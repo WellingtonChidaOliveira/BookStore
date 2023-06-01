@@ -1,0 +1,23 @@
+﻿.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.form-control-file {
+    padding-top: 6px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+}

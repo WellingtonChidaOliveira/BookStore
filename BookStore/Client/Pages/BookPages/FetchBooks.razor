@@ -1,0 +1,38 @@
+﻿@page "/fetchbooks"
+@inject IBookService BookService
+@inject NavigationManager NavigationManager
+@implements IDisposable
+
+<h3>FetchBooks</h3>
+
+@if (Books is null || Books.Count() == 0)
+{
+    <p>Nenhum registro na base</p>
+}
+else
+{
+    <ul>
+        @foreach (var book in Books)
+        {
+            <li class="media my-3">
+                <div class="media-img-wrapper mr-2">
+                    <a href="/edit/@book.id">
+                        <img class="media-img" src="@book.ImageUrl" alt="@book.Title" />
+                    </a>
+                </div>
+                <div class="media-body">
+                    <p>Title:<a href="/edit/@book.id" style="width: 100px">@book.Title</a></p>
+                    <p> Description: @book.Description</p>
+                    <h5 class="price">
+                        Price: @book.Price.ToString()
+                    </h5>
+                </div>
+            </li>
+        }
+    </ul>
+}
+
+<button class="btn btn-primary" @onclick="RedirectToCreate">Adicionar novo Livro</button>
+
+
+

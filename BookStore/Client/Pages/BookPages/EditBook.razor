@@ -1,0 +1,44 @@
+﻿@page "/edit/{id}"
+
+@inject IBookService BookRepository
+@inject NavigationManager NavigationManager
+
+<h3>Editar Livro</h3>
+
+@if (book == null)
+{
+    <p>Carregando...</p>
+}
+else
+{
+    <div class="form-container">
+        <div class="form-group">
+            <label for="title">Título:</label>
+            <input id="title" class="form-control" @bind="@book.Title" />
+        </div>
+        <div class="form-group">
+            <label for="author">Autor:</label>
+            <input id="author" class="form-control" @bind="@book.AuthorName" />
+        </div>
+        <div class="form-group">
+            <label for="publisher">Editora:</label>
+            <input id="publisher" class="form-control" @bind="@book.Publisher" />
+        </div>
+        <div class="form-group">
+            <label for="price">Preço:</label>
+            <input id="price" class="form-control" @bind="@book.Price" />
+        </div>
+        <div class="form-group">
+            <label for="description">Descrição:</label>
+            <textarea id="description" class="form-control" @bind="@book.Description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="photo">Foto:</label>
+            <div class="image-container">
+                <img src="@book.ImageUrl" alt="@book.Title" class="media-image" />
+            </div>
+            <BlazorInputFile.InputFile id="photo" type="file" class="input-file" OnChange="HandlePhotoChange" />
+        </div>
+        <button class="btn btn-primary" @onclick="UpdateBook">Atualizar</button>
+    </div>
+}
