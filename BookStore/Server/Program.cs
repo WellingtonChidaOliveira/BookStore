@@ -1,5 +1,6 @@
-using BookStore.Server.Abstraction;
-using BookStore.Server.Data.MongoDb;
+global using BookStore.Server.Abstraction;
+global using BookStore.Server.Data.MongoDb;
+global using BookStore.Shared;
 using BookStore.Server.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IBookRepository,BookRepository>();
 builder.Services.AddScoped<IMongoDbContext, MongoDbContext>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 
 builder.Services.AddControllersWithViews();

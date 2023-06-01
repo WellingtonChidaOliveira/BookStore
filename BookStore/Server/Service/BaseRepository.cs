@@ -1,5 +1,4 @@
-﻿using BookStore.Server.Data.MongoDb;
-using BookStore.Shared.Base;
+﻿using BookStore.Shared.Base;
 using MongoDB.Driver;
 
 namespace BookStore.Server.Service

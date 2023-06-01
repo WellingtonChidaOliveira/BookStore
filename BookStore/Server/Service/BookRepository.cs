@@ -1,8 +1,4 @@
-﻿using BookStore.Server.Abstraction;
-using BookStore.Server.Data.MongoDb;
-using BookStore.Shared;
-
-namespace BookStore.Server.Service
+﻿namespace BookStore.Server.Service
 {
     public class BookRepository : BaseRepository<Book>, IBookRepository
     {

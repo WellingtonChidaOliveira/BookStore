@@ -1,6 +1,6 @@
 ﻿namespace BookStore.Server.Abstraction
 {
-    public interface ICustomerRepository
+    public interface ICustomerRepository : IBaseRepository<Customer>
     {
     }
 }

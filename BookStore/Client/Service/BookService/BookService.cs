@@ -1,6 +1,4 @@
-﻿
-using Newtonsoft.Json;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 
 namespace BookStore.Client.Service.BookService
 {
@@ -19,7 +17,6 @@ namespace BookStore.Client.Service.BookService
 
         public async Task<ServiceResponse<Book>> AddBook(Book book)
         {
-            var json = JsonConvert.SerializeObject(book);
             var result = await _httpClient.PostAsJsonAsync("api/Book", book);
             if(result.IsSuccessStatusCode)
             {
