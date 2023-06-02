@@ -1,4 +1,6 @@
-﻿namespace BookStore.Shared
+﻿using System.Text.Json;
+
+namespace BookStore.Shared
 {
     public class Address
     {
@@ -7,4 +9,6 @@
         public string State { get; set; } = string.Empty;
         public string Zip { get; set; } = string.Empty;
     }
+
+   
 }

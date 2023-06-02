@@ -1,10 +1,11 @@
 ﻿@page "/create-user"
+@using BookStore.Shared.Utils;
 @inject NavigationManager NavigationManager
-@inject ICostumerService CustomerService
+@inject ICustomerService CustomerService
 
 <h3>Cadastro de Usuário</h3>
 
-<EditForm Model="@user" OnValidSubmit="HandleSubmit">
+<EditForm Model="@user">
     <DataAnnotationsValidator />
 
     <div class="form-group">
@@ -20,14 +21,43 @@
     </div>
 
     <div class="form-group">
-        <label for="phone">Telefone:</label>
-        <InputText id="phone" class="form-control" @bind-Value="@phone" />
+        <label>Telefone:</label>
+        <div class="input-group mb-3">
+            <InputText class="form-control" @bind-Value="phone" />
+            <InputSelect class="form-control" @bind-Value="phoneType">
+                @foreach (var phoneType in TypesTel.GetAllTypes())
+                {
+                    <option value="@phoneType">@phoneType</option>
+                }
+            </InputSelect>
+            <button class="btn btn-primary ml-2" @onclick="AddPhone">Adicionar Telefone</button>
+        </div>
+        @foreach (var phone in user.Phone)
+        {
+            <div class="input-group mb-3">
+                <label class="form-control">@phone.Number - @phone.Type</label>
+                <button class="btn btn-danger ml-2" @onclick="() => RemovePhone(phone.Number)">Remover</button>
+            </div>
+        }
         <ValidationMessage For="@(() => user.Phone)" />
     </div>
 
     <div class="form-group">
-        <label for="address">Endereço:</label>
-        <InputText id="address" class="form-control" @bind-Value="@zipCode" />
+        <label for="address">Postal Code:</label>
+        <div class="input-group mb-3">
+            <InputText id="address" class="form-control" @bind-Value="@zipCode" />
+            <button class="btn btn-primary ml-2" @onclick="AddAddress">Adicionar Endereço</button>
+        </div>
+        @foreach (var address in user.Address)
+        {
+            <div class="input-group mb-3">
+                <label class="form-control" >@address.Zip</label>
+                <label class="form-control">@address.City</label>
+                <label class="form-control">@address.State</label>
+                <label class="form-control">@address.Street</label>
+                <button class="btn btn-danger ml-2" @onclick="() => RemoveAddress(address.Zip)">Remover</button>
+            </div>
+        }
         <ValidationMessage For="@(() => user.Address)" />
     </div>
 
@@ -37,5 +67,5 @@
         <ValidationMessage For="@(() => user.Photo)" />
     </div>
 
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary" @onclick="HandleSubmit">Cadastrar</button>
 </EditForm>

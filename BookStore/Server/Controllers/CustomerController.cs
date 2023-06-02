@@ -4,12 +4,12 @@ namespace BookStore.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CostumerController : Controller
+    public class CustomerController : Controller
     {
         //TODO: Apply rules for password and towards to end see something about authentication
         private readonly ICustomerRepository _customerRepository;
 
-        public CostumerController(ICustomerRepository customerRepository)
+        public CustomerController(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
