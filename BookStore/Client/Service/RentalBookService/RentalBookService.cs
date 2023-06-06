@@ -27,6 +27,15 @@ namespace BookStore.Client.Service.RentalBookService
             }
         }
 
+        public async Task<RentalBook> GetRentalBookId(string id)
+        {
+            var result = await _httpClient.GetFromJsonAsync<RentalBook>($"api/RentalBook/{id}");
+            if (result is not null)
+                return result;
+
+            return null;
+        }
+
         public async Task<List<RentalBook>> GetRentalBooks()
         {
             var result = await _httpClient.GetFromJsonAsync<List<RentalBook>>("api/RentalBook");
@@ -61,7 +70,7 @@ namespace BookStore.Client.Service.RentalBookService
 
         public async Task ReturnBook(RentalBook rentalBook)
         {
-            await _httpClient.PutAsJsonAsync($"api/RentalBook/{rentalBook.id}", rentalBook);
+            await _httpClient.PutAsJsonAsync<RentalBook>($"api/RentalBook", rentalBook);
         }
 
 
