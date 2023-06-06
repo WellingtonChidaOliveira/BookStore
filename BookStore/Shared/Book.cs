@@ -21,7 +21,7 @@ namespace BookStore.Shared
         public string Publisher { get; set; } = string.Empty;
         //public string ISBN { get; set; } Unique numeric book identifier
         [BsonElement("price")]
-        public string Price { get; set; } = string.Empty;
+        public double Price { get; set; } = 0;
         [BsonElement("description")]
         public string Description { get; set; } = string.Empty;
         [BsonElement("photo")]

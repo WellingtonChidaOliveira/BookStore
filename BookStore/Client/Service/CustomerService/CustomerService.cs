@@ -61,5 +61,16 @@ namespace BookStore.Client.Service.CustomerService
             return address;
         }
 
+        public async Task<Customer> GetCustomer(string userId)
+        {
+            var customer = await _httpClient.GetFromJsonAsync<Customer>($"api/Customer/{userId}");
+            return customer;
+        }
+
+        public async Task<List<Customer>> GetCustomers()
+        {
+            var customer = await _httpClient.GetFromJsonAsync<List<Customer>>("api/Customer");
+            return customer;
+        }
     }
 }

@@ -3,7 +3,7 @@ namespace BookStore.Client.Pages.BookPages
 {
     public partial class FetchBooks
     {
-        private IEnumerable<Book> Books;
+        private List<Book> Books;
         protected override async Task OnInitializedAsync()
         {
             BookService.OnChange += StateHasChanged;
@@ -18,7 +18,7 @@ namespace BookStore.Client.Pages.BookPages
         private async Task GetBooks()
         {
            var result = await BookService.GetBooks();
-           Books = result.Data;
+           Books = result;
            
             
         }

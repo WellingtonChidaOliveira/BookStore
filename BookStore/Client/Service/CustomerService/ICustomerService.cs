@@ -5,5 +5,7 @@
         Task<ServiceResponse<Customer>> AddCustomer(Customer customer);
 
         Task<Address> SearchPostalCode (string postalCode);
+
+        Task<List<Customer>> GetCustomers();
     }
 }

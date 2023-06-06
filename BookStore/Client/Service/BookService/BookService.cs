@@ -18,7 +18,7 @@ namespace BookStore.Client.Service.BookService
         public async Task<ServiceResponse<Book>> AddBook(Book book)
         {
             var result = await _httpClient.PostAsJsonAsync("api/Book", book);
-            if(result.IsSuccessStatusCode)
+            if (result.IsSuccessStatusCode)
             {
                 return new ServiceResponse<Book>
                 {
@@ -41,7 +41,7 @@ namespace BookStore.Client.Service.BookService
         public async Task<ServiceResponse<Book>> DeleteBook(int id)
         {
             var result = await _httpClient.DeleteAsync($"api/book/{id}");
-            if(result.IsSuccessStatusCode)
+            if (result.IsSuccessStatusCode)
             {
                 return new ServiceResponse<Book>
                 {
@@ -64,7 +64,7 @@ namespace BookStore.Client.Service.BookService
         public async Task<ServiceResponse<Book>> GetBook(string id)
         {
             var result = await _httpClient.GetFromJsonAsync<Book>($"api/book/{id}");
-            if(result is not null)
+            if (result is not null)
             {
                 return new ServiceResponse<Book>
                 {
@@ -82,38 +82,30 @@ namespace BookStore.Client.Service.BookService
                     Message = "Book not found"
                 };
             }
-           
+
         }
 
-        public async Task<ServiceResponse<IEnumerable<Book>>> GetBooks()
+        public async Task<List<Book>> GetBooks()
         {
-            var result = await _httpClient.GetFromJsonAsync<IEnumerable<Book>>("api/Book");
-            if(result is not null)
+            var result = await _httpClient.GetFromJsonAsync<List<Book>>("api/Book");
+            if (result is not null)
             {
-                return new ServiceResponse<IEnumerable<Book>>
-                {
-                    Data = result,
-                    Success = true,
-                    Message = "Books retrieved successfully"
-                };
+                return result;
             }
             else
             {
-                return new ServiceResponse<IEnumerable<Book>>
-                {
-                    Data = null,
-                    Success = false,
-                    Message = "Books not found"
-                };
+                return null;
             }
-           
+
+
+
         }
 
         public async Task<ServiceResponse<Book>> UpdateBook(Book book)
         {
             var result = await _httpClient.PutAsJsonAsync<Book>("api/Book", book);
 
-            if(result.IsSuccessStatusCode)
+            if (result.IsSuccessStatusCode)
             {
                 return new ServiceResponse<Book>
                 {

@@ -7,7 +7,7 @@ namespace BookStore.Client.Service.BookService
 
         event Action OnChange;
         List<Book> Books { get; set; }
-        Task<ServiceResponse<IEnumerable<Book>>> GetBooks();
+        Task<List<Book>> GetBooks();
         Task<ServiceResponse<Book>> GetBook(string id);
         Task<ServiceResponse<Book>> AddBook(Book book);
         Task<ServiceResponse<Book>> DeleteBook(int id);

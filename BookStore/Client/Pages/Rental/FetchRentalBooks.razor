@@ -1,0 +1,60 @@
+﻿@page "/rentalbooks"
+@inject IRentalBookService RentalBookService
+@inject NavigationManager NavigationManager
+
+<h3>Livros Alugados</h3>
+
+<div>
+    <button class="btn btn-primary mb-3" @onclick="CreateNewRental">Novo Rental</button>
+    <button class="btn btn-primary mb-3" @onclick="RedirectToCreateUser">Create User</button>
+</div>
+
+@if (rentalBooks != null && rentalBooks.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Foto do Cliente</th>
+                <th>Foto do Livro</th>
+                <th>Título do Livro</th>
+                <th>Nome do Cliente</th>
+                <th>Data de Aluguel</th>
+                <th>Data de Devolução</th>
+                <th>Preço Total</th>
+                <th>Multa</th>
+                <th>Devolvido</th>
+                <th>Acao</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rentalBook in rentalBooks)
+            {
+                <tr>
+                    <td>
+                        <img src="@rentalBook.Customer.ImageUrl" alt="Foto do Cliente" width="50" height="50" />
+                    </td>
+                    <td>
+                        <img src="@rentalBook.Book.ImageUrl" alt="Foto do Livro" width="50" height="50" />
+                    </td>
+                    <td>@rentalBook.Book.Title</td>
+                    <td>@rentalBook.Customer.Email</td>
+                    <td>@rentalBook.RentalDate.ToShortDateString()</td>
+                    <td>@rentalBook.ReturnDate.ToShortDateString()</td>
+                    <td>@rentalBook.TotalPrice.ToString("C2")</td>
+                    <td>@rentalBook.Penalty.ToString("C2")</td>
+                    <td>@(rentalBook.IsReturned ? "Sim" : "Não")</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="() => EditRental(rentalBook.id)">Editar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nenhum livro alugado encontrado.</p>
+}
+
+
+
